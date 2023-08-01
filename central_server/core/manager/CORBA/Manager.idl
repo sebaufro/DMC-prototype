@@ -1,0 +1,16 @@
+#pragma once
+
+module CORBAManagerRef
+{
+        exception notFoundRef { };
+        exception notFoundClass {  };
+    interface Manager
+    {
+
+    	short addRef(in string name, in string origin, in string clsname, in string descriptionpath, in boolean protected);
+        string findRefByName(in string name) raises (notFoundRef);
+        string findRefsDefs(in string name) raises (notFoundRef);
+        short addObjToServer(in string compName, in string clsName) raises (notFoundClass);
+        void shutdown();
+    };
+};
