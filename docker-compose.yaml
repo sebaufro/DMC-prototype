@@ -1,0 +1,51 @@
+version: '3.3'
+
+services:
+
+  dmc-1:
+    build:
+      context: ./DMC
+    image: dmc
+    container_name: dmc_container_1
+    stdin_open: true 
+    tty: true
+    networks:
+      testing:
+        ipv4_address: 192.168.55.10
+    volumes:
+      - ./ice_files/dmc-1:/home/ice_conf
+
+  dmc-2:
+    build:
+      context: ./DMC
+    image: dmc
+    container_name: dmc_container_2
+    stdin_open: true 
+    tty: true
+    networks:
+      testing:
+        ipv4_address: 192.168.55.11
+    volumes:
+      - ./ice_files/dmc-2:/home/ice_conf
+
+  dmc-3:
+    build:
+      context: ./DMC
+    image: dmc
+    container_name: dmc_container_3
+    stdin_open: true 
+    tty: true
+    networks:
+      testing:
+        ipv4_address: 192.168.55.12
+    volumes:
+      - ./ice_files/dmc-3:/home/ice_conf
+
+networks:
+  testing:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.55.0/24
+          gateway: 192.168.55.1
